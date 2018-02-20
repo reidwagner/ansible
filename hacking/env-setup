@@ -51,11 +51,6 @@ gen_egg_info()
     $PYTHON_BIN setup.py egg_info
 }
 
-if [ "$ANSIBLE_HOME" != "$PWD" ] ; then
-    current_dir="$PWD"
-else
-    current_dir="$ANSIBLE_HOME"
-fi
 (
 	cd "$ANSIBLE_HOME"
 	if [ "$verbosity" = silent ] ; then
@@ -65,7 +60,6 @@ fi
 	    gen_egg_info
             find . -type f -name "*.pyc" -exec rm -f {} \;
 	fi
-	cd "$current_dir"
 )
 
 if [ "$verbosity" != silent ] ; then
